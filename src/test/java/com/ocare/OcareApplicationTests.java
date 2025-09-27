@@ -7,7 +7,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 class OcareApplicationTests {
 
     @Test
-    void contextLoads() {
-    }
-
+    void contextLoads() {}
 }
