@@ -1,0 +1,41 @@
+# Git 관련 파일
+.git
+.gitignore
+
+# IDE 설정 파일
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# 빌드 결과물
+build/
+target/
+out/
+
+# Gradle 캐시
+.gradle/
+
+# 로그 파일
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
+
+# OS 파일
+.DS_Store
+Thumbs.db
+
+# 환경 설정 파일
+.env
+.env.local
+
+# 문서 파일
+README.md
+HELP.md
+
+# 테스트 관련
+test-results/
+coverage/
