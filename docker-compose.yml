@@ -8,9 +8,9 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-ocare_db}
-      MYSQL_USER: ${MYSQL_USER:-ocare_user}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-ocare_password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-health_app}
+      MYSQL_USER: ${MYSQL_USER:-health_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-health_password}
       MYSQL_ROOT_HOST: '%'
     ports:
       - "${MYSQL_PORT:-3306}:3306"
@@ -61,9 +61,9 @@ services:
       - "${APP_PORT:-8080}:8080"
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-docker}
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-ocare_db}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
-      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-ocare_user}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-ocare_password}
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-health_app}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-health_user}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-health_password}
       SPRING_REDIS_HOST: redis
       SPRING_REDIS_PORT: 6379
       SPRING_JPA_HIBERNATE_DDL_AUTO: ${JPA_DDL_AUTO:-update}
@@ -91,8 +91,8 @@ services:
       - "${PHPMYADMIN_PORT:-8081}:80"
     environment:
       PMA_HOST: mysql
-      PMA_USER: ${MYSQL_USER:-ocare_user}
-      PMA_PASSWORD: ${MYSQL_PASSWORD:-ocare_password}
+      PMA_USER: ${MYSQL_USER:-health_user}
+      PMA_PASSWORD: ${MYSQL_PASSWORD:-health_password}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
     depends_on:
       mysql:
