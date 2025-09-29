@@ -1,7 +1,6 @@
 package com.health.app.scenario;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.health.app.adapter.in.web.dto.RegisterUserRequest;
 import com.health.app.adapter.in.web.dto.SaveHealthDataRequest;
 import com.health.app.application.port.out.LoadHealthDataPort;
 import com.health.app.application.port.out.LoadStatisticsPort;
@@ -29,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
@@ -51,12 +50,6 @@ class HealthAppDataScenarioTest {
     @Test
     @DisplayName("시나리오 1: 삼성헬스 사용자의 하루 활동 패턴")
     void scenario1_SamsungHealthUser_DailyActivityPattern() throws Exception {
-        // given - 삼성헬스 사용자 등록
-        RegisterUserRequest userRequest = new RegisterUserRequest(
-                "samsung.user@example.com",
-                "password123",
-                "Samsung Health User"
-        );
 
         // when - 하루 종일 활동 데이터 수집
         // 1) 아침 7:30 - 조깅 (INPUT_DATA1)

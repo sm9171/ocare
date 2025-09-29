@@ -49,8 +49,9 @@ class RecordKeyTest {
         RecordKey key2 = new RecordKey("USER_123");
 
         // when & then
-        assertThat(key1).isEqualTo(key2);
-        assertThat(key1.hashCode()).isEqualTo(key2.hashCode());
+        assertThat(key1)
+                .isEqualTo(key2)
+                .hasSameHashCodeAs(key2);
     }
 
     @Test
@@ -70,6 +71,6 @@ class RecordKeyTest {
         RecordKey recordKey = new RecordKey(value);
 
         // when & then
-        assertThat(recordKey).isEqualTo(value);
+        assertThat(recordKey).hasToString(value);
     }
 }

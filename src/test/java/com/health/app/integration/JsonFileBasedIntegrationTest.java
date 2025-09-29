@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +30,7 @@ import com.health.app.util.JsonTestDataLoader;
  * 실제 JSON 파일에서 데이터를 로드하여 REST API 테스트
  */
 @SpringBootTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
@@ -203,10 +204,14 @@ class JsonFileBasedIntegrationTest {
         }
 
         // 저장된 데이터 검증
-        List<HealthData> allSavedData = loadHealthDataPort.loadHealthDataByRecordKey(
+        List<HealthData> samsungData = loadHealthDataPort.loadHealthDataByRecordKey(
                 new RecordKey("SAMSUNG_USER_001"));
-        allSavedData.addAll(loadHealthDataPort.loadHealthDataByRecordKey(
-                new RecordKey("APPLE_USER_002")));
+        List<HealthData> appleData = loadHealthDataPort.loadHealthDataByRecordKey(
+                new RecordKey("APPLE_USER_002"));
+        
+        List<HealthData> allSavedData = new ArrayList<>();
+        allSavedData.addAll(samsungData);
+        allSavedData.addAll(appleData);
 
         long morningActivities = allSavedData.stream()
                 .filter(data -> data.getCollectedAt().getHour() >= 6 && data.getCollectedAt().getHour() <= 10)
@@ -230,10 +235,14 @@ class JsonFileBasedIntegrationTest {
         }
 
         // then - 칼로리 소모량 분석
-        List<HealthData> allSavedData = loadHealthDataPort.loadHealthDataByRecordKey(
+        List<HealthData> samsungData = loadHealthDataPort.loadHealthDataByRecordKey(
                 new RecordKey("SAMSUNG_USER_001"));
-        allSavedData.addAll(loadHealthDataPort.loadHealthDataByRecordKey(
-                new RecordKey("APPLE_USER_002")));
+        List<HealthData> appleData = loadHealthDataPort.loadHealthDataByRecordKey(
+                new RecordKey("APPLE_USER_002"));
+        
+        List<HealthData> allSavedData = new ArrayList<>();
+        allSavedData.addAll(samsungData);
+        allSavedData.addAll(appleData);
 
         // 고강도 운동 (700kcal 이상)
         long highIntensityWorkouts = allSavedData.stream()
