@@ -50,11 +50,6 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-
-    public boolean isActive() {
-        return status == UserStatus.ACTIVE;
-    }
-
     private String validateEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("Email cannot be null or empty");
@@ -80,7 +75,7 @@ public class User {
     }
 
     private String generateRecordKey() {
-        return "USER_" + System.currentTimeMillis() + "_" + (RANDOM.nextInt() * 1000);
+        return "USER_" + System.currentTimeMillis() + "_" + RANDOM.nextInt(1000);
     }
 
     public RecordKey getRecordKey() {
