@@ -17,7 +17,7 @@ import jakarta.persistence.*;
         indexes = {
             @Index(
                     name = "idx_monthly_statistics_record_key_year_month",
-                    columnList = "record_key, year, month",
+                    columnList = "record_key, year, month_value",
                     unique = true)
         })
 public class MonthlyStatisticsJpaEntity {
@@ -32,7 +32,7 @@ public class MonthlyStatisticsJpaEntity {
     @Column(name = "year", nullable = false)
     private Integer year;
 
-    @Column(name = "month", nullable = false)
+    @Column(name = "month_value", nullable = false)
     private Integer month;
 
     @Column(name = "total_steps", nullable = false)

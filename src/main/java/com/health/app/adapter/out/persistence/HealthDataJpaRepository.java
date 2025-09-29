@@ -23,7 +23,7 @@ public interface HealthDataJpaRepository extends JpaRepository<HealthDataJpaEnti
 
     @Query(
             "SELECT h FROM HealthDataJpaEntity h WHERE h.recordKey = :recordKey "
-                    + "AND DATE(h.collectedAt) = DATE(:date) ORDER BY h.collectedAt")
+                    + "AND CAST(h.collectedAt AS DATE) = CAST(:date AS DATE) ORDER BY h.collectedAt")
     List<HealthDataJpaEntity> findByRecordKeyAndDate(
             @Param("recordKey") String recordKey, @Param("date") LocalDateTime date);
 }
