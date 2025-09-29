@@ -15,13 +15,12 @@ import com.health.app.domain.health.MonthlyStatistics;
 @Component
 public class StatisticsPersistenceAdapter implements LoadStatisticsPort, SaveStatisticsPort {
 
-    private final StatisticsJpaRepository.DailyStatisticsJpaRepository dailyStatisticsRepository;
-    private final StatisticsJpaRepository.MonthlyStatisticsJpaRepository
-            monthlyStatisticsRepository;
+    private final DailyStatisticsJpaRepository dailyStatisticsRepository;
+    private final MonthlyStatisticsJpaRepository monthlyStatisticsRepository;
 
     public StatisticsPersistenceAdapter(
-            StatisticsJpaRepository.DailyStatisticsJpaRepository dailyStatisticsRepository,
-            StatisticsJpaRepository.MonthlyStatisticsJpaRepository monthlyStatisticsRepository) {
+            DailyStatisticsJpaRepository dailyStatisticsRepository,
+            MonthlyStatisticsJpaRepository monthlyStatisticsRepository) {
         this.dailyStatisticsRepository = dailyStatisticsRepository;
         this.monthlyStatisticsRepository = monthlyStatisticsRepository;
     }
